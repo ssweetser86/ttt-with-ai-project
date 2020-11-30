@@ -45,6 +45,8 @@ class Game
     end
 
     def turn
+        system("clear") || system("cls")
+        self.board.display
         space = current_player.move(self.board)
         if self.board.valid_move?(space)
             self.board.update(space, current_player)
@@ -55,8 +57,11 @@ class Game
 
     def play
         until over? do turn end
+        system("clear") || system("cls")
+        self.board.display
         puts "Congratulations #{winner}!" if won?
         puts "Cat's Game!" if draw?
+        sleep(0.25)
     end
 
 end

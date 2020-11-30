@@ -1,3 +1,24 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+system("clear") || system("cls")
+puts "Enter number of players (0,1,2): "
+players = gets.chomp
+if players == '0'
+    Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new).play
+elsif players == '1'
+    Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new).play
+elsif players == '2'
+    Game.new.play
+elsif players == 'wargames'
+    for i in (1..100)
+        Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new).play
+    end
+    system("clear") || system("cls")
+    "A strange game. The only winning move is not to play. How about a nice game of chess?".each_char do |c| 
+        print c
+        sleep(0.125)
+    end
+    print "\n"
+end
